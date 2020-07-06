@@ -124,15 +124,16 @@ occupations = {'blacksmith': 50, 'farmer': 20, 'governor': 1000, 'Landlord': 200
 
 class ProDev():
     
-    def __init__(self):
-        pass
+    def __init__(self, adolescence = 14, oldage = 65):
+        self.adolescence = adolescence
+        self.oldage = oldage
     
     def __call__(self, villager):
         profession = villager.get_profession()
         age = villager.get_age()
-        if age <= 14:
+        if age <= self.adolescence:
             profession = 'child'
-        elif age <= 65:
+        elif age <= self.oldage:
             if profession is None or 'child':
                 if profession not in jobs:
                     profession = choice(jobs, None, p = (.2,.5,.01,.05,.2,.04))
